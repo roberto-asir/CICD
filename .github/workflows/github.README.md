@@ -21,7 +21,7 @@ Para ello se accede a Settings (del propio repositorio) >> Secrets >> Actions y 
 
 El archivo que ejecuta el workflow de Github action para el despliegue está en este enlace:
 
-https://github.com/roberto-asir/practica-cicd/blob/main/.github/workflows/main.yml
+https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/.github/workflows/main.yml
 
 ## Autorizacion manual
 
