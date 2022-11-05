@@ -28,6 +28,9 @@ https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/.github/workflo
 Hay que realizar 2 acciones para generar el proceso de aprovación manual:
 
 - Configuración dentro del proyecto de un entorno desde `settings > environment`. **Es necesario** marcar la opción `Required reviewers` y añadir algún usuario con acceso al repositorio para que se le puedan notificar aprovaciones pendientes. 
+  > Para poder generar un entorno es necesario que se genere desde un repositorio público aunque luego se puede utilizar desde cualuqier otro repositorio.
+  > Esto es así porque desde repositorios privados no aparece el acceso a la sección `Environments` desde la página `Settins` del proyecto
+
 - En el propio archivo del job de Github Actions indicar que se va a usar el entorno con la siguiente linea dentro del job: ` environment: NOMBRE_DEL_ENTORNO`
 
 ![Captura desde 2022-11-05 19-36-34](https://user-images.githubusercontent.com/2046110/200135671-957bc2d6-19c9-49e4-a9d4-f3b89ccf30ce.png)
@@ -37,8 +40,6 @@ Hay que realizar 2 acciones para generar el proceso de aprovación manual:
 ![Captura desde 2022-11-04 13-56-11](https://user-images.githubusercontent.com/2046110/200135714-5d2c1308-4fb4-4648-b548-7c118db057ee.png)
 
 
-> Para poder generar un entorno es necesario que se genere desde un repositorio público aunque luego se puede utilizar desde cualuqier otro repositorio.
-> Esto es así porque desde repositorios privados no aparece el acceso a la sección `Environments` desde la página `Settins` del proyecto
 
 ## Fuera de carta
 
