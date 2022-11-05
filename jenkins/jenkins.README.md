@@ -80,15 +80,15 @@ Se controlará a través de otro pipeline aparte.
 
 - ### Jobs
 
-El job para generar el pipeline del **despliegue del bucket** en S3 está en [este archivo](https://github.com/roberto-asir/practica-cicd/blob/main/jenkins/Job_DSL_deploy)
+El job para generar el pipeline del **despliegue del bucket** en S3 está en [este archivo](https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/jenkins/Job_DSL_deploy)
 
-El job para generar el pipeline del **control del espacio usado** en el bucket está en [este archivo](https://github.com/roberto-asir/practica-cicd/blob/main/jenkins/Job_DSL_cron)
+El job para generar el pipeline del **control del espacio usado** en el bucket está en [este archivo](https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/jenkins/Job_DSL_cron)
 
 - ### Pipelines
 
-El pipeline que genera **despliegue del bucket** en S3 está en [este archivo](https://github.com/roberto-asir/practica-cicd/blob/main/jenkins/Jenkinsfile)
+El pipeline que genera **despliegue del bucket** en S3 está en [este archivo](https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/jenkins/Jenkinsfile)
 
-El pipeline que genera el **control del espacio usado** en el bucket está en [este archivo](https://github.com/roberto-asir/practica-cicd/blob/main/jenkins/cronjob.Jenkinsfile)
+El pipeline que genera el **control del espacio usado** en el bucket está en [este archivo](https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/jenkins/cronjob.Jenkinsfile)
 
 - ### Node Clouds
 
@@ -131,5 +131,5 @@ Es necesario por tanto añadir un nuevo `Docker Agent templates` además del añ
 
 ## Rellenando el bucket
 
-Para que el cronjob que vigila el espacio del disco cada 10 minutos pueda detectar que el bucket está utilizando más espacio del permitido he generado este script: [fill_up_bucket.sh](https://github.com/roberto-asir/practica-cicd/blob/main/jenkins/fill_up_bucket.sh)
+Para que el cronjob que vigila el espacio del disco cada 10 minutos pueda detectar que el bucket está utilizando más espacio del permitido he generado este script: [fill_up_bucket.sh](https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/jenkins/fill_up_bucket.sh)
 
