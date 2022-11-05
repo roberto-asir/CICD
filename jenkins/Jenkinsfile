@@ -1,0 +1,108 @@
+// Variable to check if bucket is created in AWS before run terraform apply
+// if bucket exists I don't want get an error in the pipeline execution, only a warning
+def BUCKET_INSTALLED = true
+def BUCKET_NAME = 'acme-storage-robertoasir'
+
+pipeline {
+	
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    }
+    
+    agent {
+	label('terraform')
+    }
+
+    stages {
+        stage('terraform init') {	
+            steps {
+		dir('terraform'){
+                    sh 'terraform init -no-color'
+                }
+            }
+        }
+        stage('terraform validate') {
+            steps {
+		dir('terraform'){
+                    sh 'terraform validate -no-color'
+                }
+            }
+        }
+        stage('terraform plan') {
+            steps {
+		dir('terraform'){
+                    sh 'terraform plan -no-color'
+                }
+            }
+	}
+	stage('Chek bucket exists before terraform apply') {
+            agent{
+                    label('awscli')
+            }
+            steps {
+                script {
+                    try {
+			sh "aws s3 ls | grep ${BUCKET_NAME}"
+			BUCKET_INSTALLED = true
+                    } catch (err) {
+                        BUCKET_INSTALLED = false
+                    }
+                }
+            }
+        }
+        stage('(main) terraform apply') {
+            when {
+                branch 'main'
+            }
+	    input {
+                message "Do you want to continue"
+                ok "Yes, continue the pipeline"
+            }
+            steps {
+		script {
+		    if(!BUCKET_INSTALLED) {
+		        dir('terraform'){
+		            sh 'terraform apply -no-color -auto-approve'
+                        }
+		    } else {
+		        unstable(message: "Bucket already exists")
+		    }
+		}
+            }
+        }
+	stage('terraform apply') {
+            when {
+		not {
+                    branch 'main'
+		}
+            }
+            steps {
+		script {
+		    if(!BUCKET_INSTALLED) {
+		        dir('terraform'){
+		             sh 'terraform apply -no-color -auto-approve'
+                        }
+		    } else {
+		        unstable(message: "Bucket already exists")
+		    }
+		}
+            }
+        }
+        stage('Chek deploy') {
+            agent{
+                    label('awscli')
+            }
+            steps {
+                script {
+                    try {
+                        sh "aws s3 ls | grep ${BUCKET_NAME}"
+                    } catch (err) {
+                        echo err.getMessage()
+                        unstable(message: "${STAGE_NAME} is unstable. Bucket is not find in AWS S3")
+                    }
+                }
+            }
+        }
+    }
+}

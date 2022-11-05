@@ -1,0 +1,14 @@
+multibranchPipelineJob('GitHub-practica-deploy-bucket') {
+    branchSources {
+        git {
+            id('1')
+            remote('git@github.com:roberto-asir/practica-cicd.git')
+            credentialsId('ssh-github-key')
+        }
+    }
+    factory {
+        workflowBranchProjectFactory {
+            scriptPath('jenkins/Jenkinsfile')
+        }
+    }
+}
