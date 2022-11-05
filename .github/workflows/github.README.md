@@ -25,8 +25,6 @@ https://github.com/KeepCodingCloudDevops6/cicd-roberto/blob/main/.github/workflo
 
 ## Autorizacion manual
 
-Para poder realizar una aprovación manual del despliegue  es necesario que el repositorio sea **público**
-
 Hay que realizar 2 acciones para generar el proceso de aprovación manual:
 
 - Configuración dentro del proyecto de un entorno desde `settings > environment`. **Es necesario** marcar la opción `Required reviewers` y añadir algún usuario con acceso al repositorio para que se le puedan notificar aprovaciones pendientes. 
@@ -39,6 +37,8 @@ Hay que realizar 2 acciones para generar el proceso de aprovación manual:
 ![Captura desde 2022-11-04 13-56-11](https://user-images.githubusercontent.com/2046110/200135714-5d2c1308-4fb4-4648-b548-7c118db057ee.png)
 
 
+> Para poder generar un entorno es necesario que se genere desde un repositorio público aunque luego se puede utilizar desde cualuqier otro repositorio.
+> Esto es así porque desde repositorios privados no aparece el acceso a la sección `Environments` desde la página `Settins` del proyecto
 
 ## Fuera de carta
 
