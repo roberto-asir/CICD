@@ -1,3 +1,5 @@
+![example workflow](https://github.com/KeepCodingCloudDevops6/cicd-roberto/actions/workflows/main.yml/badge.svg)
+
 # Practica final: Ciclo de desarrollo CI-CD
 
 ## Índice:
